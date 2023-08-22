@@ -1,16 +1,11 @@
-# Plausible Analytics setup examples
+Update API Scopes
 
-This repository acts as a template to get up and running with [Plausible Analytics](https://github.com/plausible/analytics).
+```
+docker compose exec plausible_db psql -U postgres -d plausible_db -c "UPDATE API_KEYS SET scopes = ARRAY['stats:read:*', 'sites:provision:*'];"
+```
 
-### How to use
+Update API Limits
 
-Find instructions on how to run Plausible Analytics Self Hosted [in our docs](https://plausible.io/docs/self-hosting).
-
-### Contributing
-
-We are always looking to expand on the options and setups provided here. Feel free to open an issue or PR if you feel
-something could be improved.
-
-### Upgrade guides
-
-- [Upgrading `plausible_db` (PostgreSQL)](upgrade/postgres.md)
+```
+docker compose exec plausible_db psql -U postgres -d plausible_db -c "UPDATE API_KEYS SET hourly_request_limit = 800000000"
+```
